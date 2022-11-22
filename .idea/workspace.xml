@@ -4,35 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30706b35-6607-4b7b-8744-8de3772d9d22" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/controllers/getCoinController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/controllers/navController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/controllers/startController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/model/Coin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/model/Door.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/model/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/model/Key.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/model/MapSite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/model/Maze.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/model/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/model/Room.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/model/Wall.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/services/ExampleGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/services/MazeGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/services/MazeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/util/MazeBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/util/StandardMazeBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/nav.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/start.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+    <list default="true" id="30706b35-6607-4b7b-8744-8de3772d9d22" name="Changes" comment="Frontend y empezamos Service">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/nav.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/nav.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/start.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/start.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,6 +110,14 @@
       <option name="presentableId" value="Default" />
       <updated>1668104664176</updated>
     </task>
+    <task id="LOCAL-00001" summary="Frontend y empezamos Service">
+      <created>1669111535526</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669111535526</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,5 +130,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Frontend y empezamos Service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Frontend y empezamos Service" />
   </component>
 </project>

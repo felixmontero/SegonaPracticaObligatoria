@@ -14,7 +14,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MAZEGAME</title>
-    <link rel="stylesheet" href="/css/canvas.css" />
+    <link rel="stylesheet" href="../../css/canvas.css" />
   </head>
 
   <body style="background-image: url(https://wallpapers.com/images/hd/white-textured-paper-439vozmsl9bybc8a.jpg); " onload="defaultMap()">

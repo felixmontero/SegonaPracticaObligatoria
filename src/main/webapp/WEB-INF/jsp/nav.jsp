@@ -21,7 +21,11 @@ contentType="text/html;charset=UTF-8" language="java" %>
     <h1>MAZE GAME</h1>
     <div id="clase" class="clase">
       <canvas id="canvas" class="canvas" width="800" height="600" style="background-color: white; border: solid black 1px"></canvas>
+    <button type="button" class="btn btn-dark">Reset Game</button>
     </div>
+
+
+    <script type=”application/json”> ${myjson} </script>
     <form action="/nav" method="post"></form>
 
     <script>

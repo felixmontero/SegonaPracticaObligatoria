@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30706b35-6607-4b7b-8744-8de3772d9d22" name="Changes" comment="Frontend y empezamos Service">
+    <list default="true" id="30706b35-6607-4b7b-8744-8de3772d9d22" name="Changes" comment="Arreglo ruta css en el jsp">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liceu/maze/controllers/navController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/controllers/navController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liceu/maze/controllers/startController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/controllers/startController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liceu/maze/model/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/model/Maze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liceu/maze/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liceu/maze/services/ExampleGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/services/ExampleGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liceu/maze/services/MazeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/services/MazeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liceu/maze/util/MazeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/util/MazeBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liceu/maze/util/StandardMazeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liceu/maze/util/StandardMazeBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/nav.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/nav.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/start.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/start.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/maps.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/maps.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +47,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/fmont/IdeaProjects/PrimeraPracticaObligatoria&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/fmont/IdeaProjects/SegonaPracticaObligatoria&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
@@ -117,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669111535526</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Arreglo ruta css en el jsp">
+      <created>1669112621293</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669112621293</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,6 +149,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Frontend y empezamos Service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Frontend y empezamos Service" />
+    <MESSAGE value="Arreglo ruta css en el jsp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglo ruta css en el jsp" />
   </component>
 </project>

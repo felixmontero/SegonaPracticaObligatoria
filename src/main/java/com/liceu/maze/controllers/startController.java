@@ -1,5 +1,7 @@
 package com.liceu.maze.controllers;
 
+import com.liceu.maze.services.MazeGame;
+import com.liceu.maze.services.MazeService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +14,10 @@ import java.io.IOException;
 @WebServlet("/start")
 public class startController extends HttpServlet {
 
-    // Service Maze
+    MazeService mazeService = new MazeService();
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        req.setAttribute("mazeList", mazeService.mazeList());
 
         RequestDispatcher dispatcher =
                 req.getRequestDispatcher("/WEB-INF/jsp/start.jsp");
@@ -22,9 +26,15 @@ public class startController extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String mapId = req.getParameter("maps");
 
-        // MazeGame mazeGame = mazeService.newGame(mapId);
+        try {
+            int mapId = Integer.parseInt(req.getParameter("maps"));
+            MazeGame playGame = mazeService.createMazeGame(mapId);
+
+            req.setAttribute("playGame", playGame);
+        } catch (NumberFormatException e) {
+
+        }
         resp.sendRedirect("/nav");
 
 

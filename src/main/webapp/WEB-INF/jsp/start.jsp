@@ -3,7 +3,7 @@
 contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,13 +13,12 @@ contentType="text/html;charset=UTF-8" language="java" %>
 </head>
 <body>
     <form method="post" action="/start">
-        <div class="form-field">
-
         <label for="mapElection">Benvingut! Elegeix un Mapa</label>
-        </div>
+
         <select name="maps" id="maps">
-            <option value="map1">Mapa</option>
-            <option value="map2">Mapa2</option>
+            <c:forEach var="maze" items="${mazeList}">
+                <option id="maps" value="{$maze.id}">${maze.name}</option>
+            </c:forEach>
         </select>
         <input type="submit" value="jugar" class="btn">
     </form>

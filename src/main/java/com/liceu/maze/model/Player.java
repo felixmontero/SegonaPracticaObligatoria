@@ -7,9 +7,28 @@ public class Player {
     private Room currentRoom;
     private List<Item> itemList = new ArrayList<>();
     public void setCurrentRoom(Room currentRoom) {
-        System.out.println("Ets a l'habitació: " + currentRoom.getNumber());
+
         this.currentRoom = currentRoom;
         currentRoom.enter(this);
+    }
+    public int getNumCoins (){
+        int totalCoins = 0;
+        for (Item i:itemList) {
+            if (i.getClass() == Coin.class){
+                totalCoins++;
+            }
+        }
+        return totalCoins;
+    }
+
+    public int getNumKeys(){
+        int totalKeys = 0;
+        for (Item i:itemList) {
+            if (i.getClass() == Key.class){
+                totalKeys++;
+            }
+        }
+        return totalKeys;
     }
 
     public void addItem(Item it) {

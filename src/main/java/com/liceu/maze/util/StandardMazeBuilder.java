@@ -58,6 +58,16 @@ public class StandardMazeBuilder implements MazeBuilder {
     }
 
     @Override
+    public void setNameMaze(String nameMaze) {
+        maze.setName(nameMaze);
+    }
+
+    @Override
+    public void setIdMaze(int mazeId) {
+        maze.setId(mazeId);
+    }
+
+    @Override
     public Maze getMaze() {
         return this.maze;
     }

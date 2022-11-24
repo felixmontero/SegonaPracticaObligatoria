@@ -9,5 +9,7 @@ public interface MazeBuilder {
     void buildDoor(int roomFrom, int roomTo, Maze.Directions dir);
     void buildDoor(int roomFrom, int roomTo, Maze.Directions dir, Key key);
     void putKeyInRoom(int nroom, Key key);
+    void setNameMaze(String nameMaze);
+    void setIdMaze(int mazeId);
     Maze getMaze();
 }

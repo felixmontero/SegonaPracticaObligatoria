@@ -31,7 +31,7 @@ public class startController extends HttpServlet {
             int mapId = Integer.parseInt(req.getParameter("maps"));
             MazeGame playGame = mazeService.createMazeGame(mapId);
 
-            req.setAttribute("playGame", playGame);
+            session.setAttribute("playGame", playGame);
         } catch (NumberFormatException e) {
 
         }

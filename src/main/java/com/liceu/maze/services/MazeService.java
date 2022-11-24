@@ -16,6 +16,7 @@ public class MazeService {
         Player player = new Player();
         Maze maze = new Maze();
 
+        player.setCurrentRoom(maze.getRoom(1));
         maze = chooseMaze(mazeId);
 
         mazeGame.setMaze(maze);
@@ -23,6 +24,13 @@ public class MazeService {
         return mazeGame;
     }
 
+
+
+    private static void go(Player player, Maze.Directions dir) {
+        Room room = player.getCurrentRoom();
+        MapSite ms = room.getSide(dir);
+        ms.enter(player);
+    }
     private Maze chooseMaze(int id) {
         switch (id) {
             case 1:

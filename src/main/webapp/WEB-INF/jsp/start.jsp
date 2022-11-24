@@ -17,7 +17,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
 
         <select name="maps" id="maps">
             <c:forEach var="maze" items="${mazeList}">
-                <option id="maps" value="{$maze.id}">${maze.name}</option>
+                <option value="${maze.id}">${maze.name}</option>
             </c:forEach>
         </select>
         <input type="submit" value="jugar" class="btn">

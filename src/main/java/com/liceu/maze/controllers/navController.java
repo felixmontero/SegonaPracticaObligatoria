@@ -1,5 +1,6 @@
 package com.liceu.maze.controllers;
 
+import com.liceu.maze.model.Maze;
 import com.liceu.maze.services.MazeGame;
 import com.liceu.maze.services.MazeService;
 
@@ -18,15 +19,16 @@ public class navController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
-        MazeGame mazeGame = (MazeGame) req.getAttribute("playGame");
-        String json =mazeService.getJsonInfo(mazeGame);
+        MazeGame mazeGame = (MazeGame) session.getAttribute("playGame");
+       // String json =mazeService.getJsonInfo(mazeGame);
 
-       // req.setAttribute("myjson",json);
+
+        //mazeService.go(mazeGame.getPlayer(), dir);
+      //  req.setAttribute("myjson",json);
 
         RequestDispatcher dispatcher =
                 req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
         dispatcher.forward(req, resp);
     }
-
 
 }

@@ -32,6 +32,7 @@ public class startController extends HttpServlet {
             MazeGame playGame = mazeService.createMazeGame(mapId);
 
             session.setAttribute("playGame", playGame);
+
         } catch (NumberFormatException e) {
 
         }

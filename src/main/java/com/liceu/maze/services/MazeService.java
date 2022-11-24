@@ -14,10 +14,15 @@ public class MazeService {
     public MazeGame createMazeGame(int mazeId) {
         MazeGame mazeGame = new MazeGame();
         Player player = new Player();
-        Maze maze = new Maze();
+        Maze maze = chooseMaze(mazeId);
 
-        player.setCurrentRoom(maze.getRoom(1));
-        maze = chooseMaze(mazeId);
+        try {
+            player.setCurrentRoom(maze.getRoom(1));
+        } catch (NullPointerException e) {
+
+        }
+
+
 
         mazeGame.setMaze(maze);
         mazeGame.setPlayer(player);
@@ -113,7 +118,7 @@ public class MazeService {
         JSONArray array = new JSONArray();
         //añadir las propiedades del jugador
         Room playerRoom = mazeGame.getPlayer().getCurrentRoom();
-        player.put("currentRoom", playerRoom);
+        player.put("currentRoom", playerRoom.getNumber());
         //añadir inventario (faltan implementar los metodos)
         player.put("coins", mazeGame.getPlayer().getNumCoins());
         player.put("keys", mazeGame.getPlayer().getNumKeys());
@@ -129,9 +134,13 @@ public class MazeService {
         walls.put("s",  dirTest(dirSouth));
         walls.put("e",  dirTest(dirEast));
 
+        JSONObject room = new JSONObject();
+        room.put("walls", walls);
+        //room.put("coin", currentRoom.haveCoin());
+        //room.put("key", currentRoom.haveKey());
 
         root.put("player", player);
-        root.put("walls", walls);
+        root.put("room", room);
 
         return root.toJSONString();
     }

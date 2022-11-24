@@ -9,7 +9,7 @@ public class Player {
     public void setCurrentRoom(Room currentRoom) {
 
         this.currentRoom = currentRoom;
-        currentRoom.enter(this);
+
     }
     public int getNumCoins (){
         int totalCoins = 0;

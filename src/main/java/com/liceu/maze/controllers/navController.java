@@ -20,11 +20,11 @@ public class navController extends HttpServlet {
 
         HttpSession session = req.getSession();
         MazeGame mazeGame = (MazeGame) session.getAttribute("playGame");
-       // String json =mazeService.getJsonInfo(mazeGame);
+        String json = mazeService.getJsonInfo(mazeGame);
 
 
         //mazeService.go(mazeGame.getPlayer(), dir);
-      //  req.setAttribute("myjson",json);
+        req.setAttribute("myjson",json);
 
         RequestDispatcher dispatcher =
                 req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");

@@ -23,7 +23,6 @@ public class MazeService {
         }
 
 
-
         mazeGame.setMaze(maze);
         mazeGame.setPlayer(player);
         return mazeGame;
@@ -31,11 +30,6 @@ public class MazeService {
 
 
 
-    private static void go(Player player, Maze.Directions dir) {
-        Room room = player.getCurrentRoom();
-        MapSite ms = room.getSide(dir);
-        ms.enter(player);
-    }
     private Maze chooseMaze(int id) {
         switch (id) {
             case 1:
@@ -45,6 +39,27 @@ public class MazeService {
             default:
                 return null;
         }
+    }
+
+    public MazeGame go(MazeGame mazeGame, String dir) {
+        Room room = mazeGame.getPlayer().getCurrentRoom();
+        MapSite direct = null;
+        if (dir.equalsIgnoreCase("n")) {
+            direct = room.getSide(Maze.Directions.NORTH);
+
+        }
+        if (dir.equalsIgnoreCase("s")) {
+            direct = room.getSide(Maze.Directions.SOUTH);
+        }
+        if (dir.equalsIgnoreCase("w")) {
+            direct = room.getSide(Maze.Directions.WEST);
+        }
+        if (dir.equalsIgnoreCase("e")) {
+            direct = room.getSide(Maze.Directions.EAST);
+        }
+        direct.enter(mazeGame.getPlayer());
+       return mazeGame;
+
     }
 
     private static Maze createMaze() {
@@ -125,19 +140,19 @@ public class MazeService {
 
         //muros
 
-        MapSite dirNorth =playerRoom.getSide(Maze.Directions.NORTH);
-        MapSite dirWest =playerRoom.getSide(Maze.Directions.WEST);
-        MapSite dirSouth =playerRoom.getSide(Maze.Directions.SOUTH);
-        MapSite dirEast =playerRoom.getSide(Maze.Directions.EAST);
+        MapSite dirNorth = playerRoom.getSide(Maze.Directions.NORTH);
+        MapSite dirWest = playerRoom.getSide(Maze.Directions.WEST);
+        MapSite dirSouth = playerRoom.getSide(Maze.Directions.SOUTH);
+        MapSite dirEast = playerRoom.getSide(Maze.Directions.EAST);
+
         walls.put("n", dirTest(dirNorth));
-        walls.put("w",  dirTest(dirWest));
-        walls.put("s",  dirTest(dirSouth));
-        walls.put("e",  dirTest(dirEast));
+        walls.put("w", dirTest(dirWest));
+        walls.put("s", dirTest(dirSouth));
+        walls.put("e", dirTest(dirEast));
 
         JSONObject room = new JSONObject();
         room.put("walls", walls);
-        //room.put("coin", currentRoom.haveCoin());
-        //room.put("key", currentRoom.haveKey());
+
 
         root.put("player", player);
         root.put("room", room);
@@ -145,20 +160,27 @@ public class MazeService {
         return root.toJSONString();
     }
 
-    public Object dirTest( MapSite i) {
+    public Object dirTest(MapSite i) {
 
         if (i.getClass() == Wall.class) {
             JSONObject wall = new JSONObject();
-            wall.put("type","wall");
+            wall.put("type", "wall");
             return wall;
         }
-
-        JSONObject door = new JSONObject();
-        door.put("type", "door");
-        Door doorOpen = (Door)i;
-        door.put("open",doorOpen);
-
-        return door;
+        if (i.getClass() == Door.class) {
+            JSONObject door = new JSONObject();
+            door.put("type", "door");
+            Door doorOpen = (Door) i;
+            if (doorOpen.isOpen()){
+                door.put("open",true);
+            }else{
+                door.put("open",false);
+            }
+            return door;
+        }
+       // Door doorOpen = (Door) i;
+        return null;
+        //doorOpen.put("doorOpen", "open");
     }
 
 }

@@ -25,18 +25,19 @@ contentType="text/html;charset=UTF-8" language="java" %>
     </div>
 
 
-    <script type=”application/json”> ${myjson} </script>
+    <script id="json" type=”application/json”> ${myjson} </script>
     <form action="/nav" method="post"></form>
 
     <script>
       const canvas = document.getElementById("canvas");
       const ctx = canvas.getContext("2d");
-
+      let info = JSON.parse(document.getElementById("json").textContent);
+        console.log(info);
       function defaultMap() {
         ctx.font = "20px Arial";
-        ctx.fillText("Room:", 10, 50);
-        ctx.fillText("Keys:", 10, 75);
-        ctx.fillText("Coins:", 10, 100);
+        ctx.fillText("Room: " + info.player.currentRoom , 10, 50);
+        ctx.fillText("Keys: " + info.player.keys, 10, 75);
+        ctx.fillText("Coins: " + info.player.coins, 10, 100);
 
         let personaje = new Image();
         let joystick = new Image();
@@ -67,10 +68,12 @@ contentType="text/html;charset=UTF-8" language="java" %>
         ctx.fillRect(200, 350, 20, 200);
         ctx.fillRect(680, 350, 20, 200);
 
-        drawKey();
-        drawCoin();
-        drawWalls();
-        drawDoors();
+         drawSide("n", info.room.walls.n.type, info.room.walls.n.open);
+         drawSide("s", info.room.walls.s.type, info.room.walls.s.open);
+         drawSide("e", info.room.walls.e.type, info.room.walls.e.open);
+         drawSide("w", info.room.walls.w.type, info.room.walls.w.open);
+         //drawKey();
+         //drawCoin();
       }
 
       canvas.addEventListener("mousedown", function (e) {
@@ -78,21 +81,56 @@ contentType="text/html;charset=UTF-8" language="java" %>
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         console.log("x: " + x + " y: " + y);
-
+        
         if (79.5 <= x && x <= 122 && 426 <= y && y <= 459) {
           console.log("up");
+          if(info.room.walls.n.open){
+          window.location.assign("/nav?dir=N");
+        }else{
+            ctx.fillText("no pots passar " , 150, 30);
+          }
         }
         if (44 <= x && x <= 85 && 456 <= y && y <= 499) {
           console.log("left");
+          if(info.room.walls.w.open){
+          window.location.assign("/nav?dir=W");
+          }else{
+            ctx.fillText("no pots passar " , 150, 30);
+          }
         }
         if (77 <= x && x <= 127 && 500 <= y && y <= 531) {
           console.log("down");
+          if(info.room.walls.s.open){
+          window.location.assign("/nav?dir=S");
+            
+          }else{
+            ctx.fillText("no pots passar" , 150, 30);
+          }
         }
         if (126 <= x && x <= 160 && 455 <= y && y <= 500) {
           console.log("right");
+          if(info.room.walls.e.open){
+            window.location.assign("/nav?dir=E"); 
+            
+          }else{
+            ctx.fillText("no pots passar" , 150, 30);
+          }
+          
         }
+        
       });
 
+      function drawSide(side, type, doorOpen) {
+        if (type == "wall") {
+            drawWalls(side);
+        } else {
+            if (!doorOpen) {
+                drawDoors(side);
+            }
+        }
+      }
+
+            
       function drawKey(){
         let key = new Image();
         key.src = "./img/key.webp";
@@ -112,41 +150,48 @@ contentType="text/html;charset=UTF-8" language="java" %>
 
       }
 
-      function drawWalls(){
+      function drawWalls(side){
 
         ctx.fillStyle = "black";
         //muro de abajo
+        if(side=="s"){
         ctx.fillRect(400, 550, 100, 20);
-
+        }
         //muro de arriba
+        if(side=="n"){
         ctx.fillRect(400, 50, 100, 20);
-
+        }
         //muro izquierda
+        if(side=="w"){
         ctx.fillRect(200, 250, 20, 100);
-
+        }
         //muro derecha
-
+        if(side=="e"){
         ctx.fillRect(680, 250, 20, 100);
-
+        }
       }
 
-      function drawDoors(){
+      function drawDoors(side){
         ctx.fillStyle = "red";
         //muro de abajo
-        ctx.fillRect(400, 550, 100, 20);
-
-        //muro de arriba
-        ctx.fillRect(400, 50, 100, 20);
-
-        //muro izquierda
-        ctx.fillRect(200, 250, 20, 100);
-
-        //muro derecha
-
-        ctx.fillRect(680, 250, 20, 100);
-
+          
+          if(side=="s"){
+          ctx.fillRect(400, 550, 100, 20);
+          }
+          //muro de arriba
+          if(side=="n"){
+          ctx.fillRect(400, 50, 100, 20);
+          }
+          //muro izquierda
+          if(side=="w"){
+          ctx.fillRect(200, 250, 20, 100);
+          }
+          //muro derecha
+          if(side=="e"){
+          ctx.fillRect(680, 250, 20, 100);
+          }
+      
       }
-
 
 
     </script>

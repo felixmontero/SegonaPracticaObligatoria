@@ -15,6 +15,14 @@ public class Door implements MapSite {
         this.open = true;
     }
 
+    @Override
+    public String toString() {
+        if(this.open)
+            return "doorClose";
+
+        return "door";
+    }
+
     public boolean isOpen() {
         return this.open;
     }

@@ -1,11 +1,13 @@
 package com.liceu.maze.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Room {
     private int number;
-    private Item item;
+    private List<Item> items = new ArrayList<>();
 
     private boolean target = false;
 
@@ -28,7 +30,7 @@ public class Room {
     }
 
     public void setItem(Item it) {
-        this.item = it;
+        this.items.add(it);
     }
 
     public MapSite getSide(Maze.Directions dir) {
@@ -39,11 +41,22 @@ public class Room {
         this.sides.put(dir, ms);
     }
 
+    public boolean haveKey(){
+
+
+        return false;
+
+    }
+
     public void enter(Player player) {
-        if (this.item != null) {
-            System.out.println("Has obtingut un ítem: " + this.item.toString());
-            player.addItem(this.item);
-            this.item = null;
+        for (Item item:items) {
+
+
+        if (item != null) {
+            System.out.println("Has obtingut un ítem: " + item.toString());
+            player.addItem(item);
+            item = null;
         }
+    }
     }
 }

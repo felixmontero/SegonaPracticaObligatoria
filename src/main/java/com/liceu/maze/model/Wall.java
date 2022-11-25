@@ -5,4 +5,9 @@ public class Wall implements MapSite {
     public void enter(Player player) {
         System.out.println("No pots passar a través d'una paret");
     }
+
+    @Override
+    public String toString() {
+        return "Wall";
+    }
 }

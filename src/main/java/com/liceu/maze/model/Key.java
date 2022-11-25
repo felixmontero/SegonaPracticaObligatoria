@@ -26,9 +26,7 @@ public class Key implements Item {
 
     @Override
     public String toString() {
-        return "Key{" +
-                "name='" + name + '\'' +
-                '}';
+        return "Key";
     }
 }
 

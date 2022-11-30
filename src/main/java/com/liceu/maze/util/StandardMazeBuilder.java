@@ -58,6 +58,11 @@ public class StandardMazeBuilder implements MazeBuilder {
     }
 
     @Override
+    public void putCoinInRoom(int nRoom, Coin coin) {
+        this.maze.getRoom(nRoom).setItem(coin);
+    }
+
+    @Override
     public void setNameMaze(String nameMaze) {
         maze.setName(nameMaze);
     }

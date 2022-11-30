@@ -41,22 +41,62 @@ public class Room {
         this.sides.put(dir, ms);
     }
 
-    public boolean haveKey(){
-
-
+    public boolean haveKey() {
+        for (Item item : items) {
+            if (item.getClass() == Key.class) {
+                return true;
+            }
+        }
         return false;
+    }
+
+    public boolean haveCoin() {
+        for (Item item : items) {
+            if (item.getClass() == Coin.class) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void getKey(Player player) {
+        Key key=null;
+
+        for (Item item : items) {
+            if (item.getClass() == Key.class) {
+                 key = (Key) item;
+
+            }
+        }
+        if (player.getNumCoins() >= key.getCost()) {
+            player.addItem(key);
+            player.buy(key, player);
+            items.remove(key);
+        }
+
+    }
+
+    public void getCoin(Player player) {
+        Coin coin=null;
+        for (Item item : items) {
+            if (item.getClass() == Coin.class) {
+                coin = (Coin) item;
+            }
+        }
+        if (coin != null) {
+            player.addItem(coin);
+            items.remove(coin);
+        }
 
     }
 
     public void enter(Player player) {
-        for (Item item:items) {
-
-
-        if (item != null) {
-            System.out.println("Has obtingut un ítem: " + item.toString());
-            player.addItem(item);
-            item = null;
+        for (Item item : items) {
+            if (item != null) {
+                System.out.println("Has obtingut un ítem: " + item.toString());
+                player.addItem(item);
+                item = null;
+            }
         }
-    }
     }
 }

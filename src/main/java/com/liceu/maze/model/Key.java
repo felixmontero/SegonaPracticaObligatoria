@@ -17,6 +17,30 @@ public class Key implements Item {
         this.doors.add(d);
     }
 
+    public List<Door> getDoors() {
+        return doors;
+    }
+
+    public void setDoors(List<Door> doors) {
+        this.doors = doors;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getKeyCoins() {
+        return keyCoins;
+    }
+
+    public void setKeyCoins(int keyCoins) {
+        this.keyCoins = keyCoins;
+    }
+
     public void open(Door door) {
         this.doors
                 .stream()
@@ -24,6 +48,14 @@ public class Key implements Item {
                 .forEach(Door::open);
     }
 
+    public int getCost() {
+        return keyCoins;
+    }
+
+    public  boolean openDoor(Door door){
+        open(door);
+        return  false;
+    }
     @Override
     public String toString() {
         return "Key";

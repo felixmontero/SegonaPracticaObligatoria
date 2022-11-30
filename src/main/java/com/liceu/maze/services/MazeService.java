@@ -29,7 +29,6 @@ public class MazeService {
     }
 
 
-
     private Maze chooseMaze(int id) {
         switch (id) {
             case 1:
@@ -58,7 +57,7 @@ public class MazeService {
             direct = room.getSide(Maze.Directions.EAST);
         }
         direct.enter(mazeGame.getPlayer());
-       return mazeGame;
+        return mazeGame;
 
     }
 
@@ -71,8 +70,8 @@ public class MazeService {
                 .range(1, 7)
                 .forEach(mazeBuilder::buildRoom);
 
-        Key k1 = new Key("Level1 Key", 2);
-        Key k2 = new Key("Level2 Key", 1);
+        Key k1 = new Key("Level1 Key", 1);
+        Key k2 = new Key("Level2 Key", 2);
 
         mazeBuilder.buildDoor(1, 2, Maze.Directions.NORTH);
         mazeBuilder.buildDoor(1, 4, Maze.Directions.SOUTH);
@@ -83,6 +82,8 @@ public class MazeService {
 
         mazeBuilder.putKeyInRoom(6, k2);
         mazeBuilder.putKeyInRoom(2, k1);
+        mazeBuilder.putCoinInRoom(2, new Coin());
+
 
         mazeBuilder.setTarget(3);
 
@@ -112,6 +113,7 @@ public class MazeService {
         mazeBuilder.putKeyInRoom(6, k2);
         mazeBuilder.putKeyInRoom(2, k1);
 
+        mazeBuilder.putCoinInRoom(5, new Coin());
         mazeBuilder.setTarget(3);
 
         return mazeBuilder.getMaze();
@@ -123,7 +125,19 @@ public class MazeService {
         mazeLists.add(createMaze2());
 
         return mazeLists;
+    }
 
+    public void getKey(MazeGame mazeGame) {
+        Room playerRoom = mazeGame.getPlayer().getCurrentRoom();
+        Player player = mazeGame.getPlayer();
+        playerRoom.getKey(player);
+
+    }
+
+    public void getCoin(MazeGame mazeGame) {
+        Room playerRoom = mazeGame.getPlayer().getCurrentRoom();
+        Player player = mazeGame.getPlayer();
+        playerRoom.getCoin(player);
     }
 
     public String getJsonInfo(MazeGame mazeGame) {
@@ -152,7 +166,8 @@ public class MazeService {
 
         JSONObject room = new JSONObject();
         room.put("walls", walls);
-
+        room.put("key", playerRoom.haveKey());
+        room.put("coin", playerRoom.haveCoin());
 
         root.put("player", player);
         root.put("room", room);
@@ -171,16 +186,57 @@ public class MazeService {
             JSONObject door = new JSONObject();
             door.put("type", "door");
             Door doorOpen = (Door) i;
-            if (doorOpen.isOpen()){
-                door.put("open",true);
-            }else{
-                door.put("open",false);
+            if (doorOpen.isOpen()) {
+                door.put("open", true);
+            } else {
+                door.put("open", false);
             }
             return door;
         }
-       // Door doorOpen = (Door) i;
+        // Door doorOpen = (Door) i;
         return null;
         //doorOpen.put("doorOpen", "open");
     }
 
+    public void openDoor(MazeGame mazeGame, String dir) {
+
+        Player player = mazeGame.getPlayer();
+        Room actualRoom = player.getCurrentRoom();
+        MapSite direct = null;
+
+        if (dir.equalsIgnoreCase("n")) {
+            direct = actualRoom.getSide(Maze.Directions.NORTH);
+
+            if (dirTest(direct) == Door.class) {
+                Door door = (Door) dirTest(direct);
+
+            }
+        }
+        if (dir.equalsIgnoreCase("s")) {
+            direct = actualRoom.getSide(Maze.Directions.SOUTH);
+            if (dirTest(direct) == Door.class) {
+                Door door = (Door) dirTest(direct);
+                door.open();
+            }
+        }
+        if (dir.equalsIgnoreCase("w")) {
+            direct = actualRoom.getSide(Maze.Directions.WEST);
+            if (dirTest(direct) == Door.class) {
+                Door door = (Door) dirTest(direct);
+                List<Item> list = player.getItemList();
+                for (Item i : list) {
+                    if (i.getClass() == Key.class) {
+                        ((Key) i).openDoor(door);
+                    }
+                }
+            }
+            if (dir.equalsIgnoreCase("e")) {
+                direct = actualRoom.getSide(Maze.Directions.EAST);
+                if (dirTest(direct) == Door.class) {
+                    Door door = (Door) dirTest(direct);
+
+                }
+            }
+        }
+    }
 }

@@ -20,7 +20,17 @@ public class Player {
         }
         return totalCoins;
     }
+    public void buy(Key key, Player player){
+        int counter=0;
+        List<Item> itemList1= itemList;
+        for (Item i: itemList1) {
+            if(key.getCost()>counter && i.getClass() == Coin.class){
+                itemList.remove(i);
+                counter++;
+            }
+        }
 
+    }
     public int getNumKeys(){
         int totalKeys = 0;
         for (Item i:itemList) {

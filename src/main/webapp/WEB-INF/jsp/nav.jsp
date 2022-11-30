@@ -21,7 +21,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
     <h1>MAZE GAME</h1>
     <div id="clase" class="clase">
       <canvas id="canvas" class="canvas" width="800" height="600" style="background-color: white; border: solid black 1px"></canvas>
-    <button type="button" class="btn btn-dark">Reset Game</button>
+    <!-- <button type="button" class="btn btn-dark">Reset Game</button> -->
     </div>
 
 
@@ -32,12 +32,15 @@ contentType="text/html;charset=UTF-8" language="java" %>
       const canvas = document.getElementById("canvas");
       const ctx = canvas.getContext("2d");
       let info = JSON.parse(document.getElementById("json").textContent);
+      let numKeys=0;
+      let numCoins=0;
         console.log(info);
       function defaultMap() {
         ctx.font = "20px Arial";
-        ctx.fillText("Room: " + info.player.currentRoom , 10, 50);
+        ctx.fillText("Room: " + info.player.currentRoom, 10, 50);
         ctx.fillText("Keys: " + info.player.keys, 10, 75);
         ctx.fillText("Coins: " + info.player.coins, 10, 100);
+        
 
         let personaje = new Image();
         let joystick = new Image();
@@ -72,8 +75,17 @@ contentType="text/html;charset=UTF-8" language="java" %>
          drawSide("s", info.room.walls.s.type, info.room.walls.s.open);
          drawSide("e", info.room.walls.e.type, info.room.walls.e.open);
          drawSide("w", info.room.walls.w.type, info.room.walls.w.open);
-         //drawKey();
-         //drawCoin();
+         let key = info.room.key;
+         let coin = info.room.coin;
+         
+         if(key == true ){
+          drawKey();
+          
+
+         }
+         if(coin == true){
+          drawCoin();
+         }
       }
 
       canvas.addEventListener("mousedown", function (e) {
@@ -117,7 +129,37 @@ contentType="text/html;charset=UTF-8" language="java" %>
           }
           
         }
-        
+
+        if(231 <= x && x <= 366 && 393 <= y && y <= 526 && info.room.key == true){
+          ctx.clearRect(231, 393, 135, 133);
+          window.location.assign("/getkey"); 
+          ctx.fillText("Has obtingut una clau" , 150, 30);
+          console.log("Has obtingut una clau");
+        }
+
+        if(511 <= x && x <= 662 && 417 <= y && y <= 538 && info.room.coin == true){
+          ctx.clearRect(511, 410, 161, 131);
+          window.location.assign("/getcoin"); 
+          ctx.fillText("Has obtingut una moneda" , 150, 30);
+          console.log("Has obtingut una moneda");
+        }
+        //puerta izquierda
+        if(198 <= x && x <= 222 && 248 <= y && y <= 350 && !info.room.walls.w.open){
+          window.location.assign("/open?dir=W"); 
+        }
+        //puerta derecha
+        if(679 <= x && x <= 700 && 251 <= y && y <= 351 && !info.room.walls.e.open){
+          window.location.assign("/open?dir=E"); 
+        }
+
+        //puerta arriba
+        if(398 <= x && x <= 505 && 48 <= y && y <= 75 && !info.room.walls.n.open){
+          window.location.assign("/open?dir=N"); 
+        }
+        //puerta abajo
+        if(400 <= x && x <= 501 && 548 <= y && y <= 572 && !info.room.walls.s.open){
+          window.location.assign("/open?dir=S"); 
+        }
       });
 
       function drawSide(side, type, doorOpen) {
@@ -137,7 +179,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
         key.onload = function () {
           ctx.drawImage(key, 220, 390, 160, 146);
         };
-
+        
 
       }
 
@@ -147,6 +189,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
         coin.onload = function () {
           ctx.drawImage(coin, 530, 410, 140, 130);
         };
+       
 
       }
 

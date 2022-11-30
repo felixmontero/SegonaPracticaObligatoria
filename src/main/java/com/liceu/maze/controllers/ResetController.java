@@ -1,4 +1,4 @@
 package com.liceu.maze.controllers;
 
-public class keyController {
+public class ResetController {
 }

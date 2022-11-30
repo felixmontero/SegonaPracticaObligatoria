@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/start")
-public class startController extends HttpServlet {
+public class StartController extends HttpServlet {
 
     MazeService mazeService = new MazeService();
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,7 +38,7 @@ public class startController extends HttpServlet {
         }
         resp.sendRedirect("/nav");
 
-
     }
+
 
 }

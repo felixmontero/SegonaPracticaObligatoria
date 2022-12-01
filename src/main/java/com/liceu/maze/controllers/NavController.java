@@ -15,6 +15,7 @@ import java.io.IOException;
 @WebServlet("/nav")
 public class NavController extends HttpServlet {
     MazeService mazeService = new MazeService();
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
@@ -23,14 +24,19 @@ public class NavController extends HttpServlet {
 
         String dir = req.getParameter("dir");
 
-        if(dir!=null) mazeService.go(mazeGame, dir);
+        if (dir != null) mazeService.go(mazeGame, dir);
 
-        String json = mazeService.getJsonInfo(mazeGame);
-        req.setAttribute("myjson",json);
+        if (mazeGame.getPlayer().getCurrentRoom().isTarget()) {
+            resp.sendRedirect("/endform");
+            return;
+        } else {
+            String json = mazeService.getJsonInfo(mazeGame);
+            req.setAttribute("myjson", json);
 
-        RequestDispatcher dispatcher =
-                req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
-        dispatcher.forward(req, resp);
+            RequestDispatcher dispatcher =
+                    req.getRequestDispatcher("/WEB-INF/jsp/nav.jsp");
+            dispatcher.forward(req, resp);
+        }
     }
 
 }

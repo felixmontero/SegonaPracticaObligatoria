@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Date;
 
 @WebServlet("/start")
 public class StartController extends HttpServlet {
@@ -28,10 +29,12 @@ public class StartController extends HttpServlet {
         HttpSession session = req.getSession();
 
         try {
+            Date time = new Date();
             int mapId = Integer.parseInt(req.getParameter("maps"));
             MazeGame playGame = mazeService.createMazeGame(mapId);
 
             session.setAttribute("playGame", playGame);
+            session.setAttribute("time", time.getTime());
 
         } catch (NumberFormatException e) {
 

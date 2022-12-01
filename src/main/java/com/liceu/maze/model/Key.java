@@ -13,6 +13,10 @@ public class Key implements Item {
         this.keyCoins = keyCoins;
     }
 
+    public Key() {
+
+    }
+
     public void addDoor(Door d) {
         this.doors.add(d);
     }
@@ -59,6 +63,18 @@ public class Key implements Item {
     @Override
     public String toString() {
         return "Key";
+    }
+
+    public boolean getDoorKey(Door door, List<Item> itemList) {
+        for (Item it : itemList){
+            if (it instanceof  Key){
+                Key key = (Key) it;
+                if (key.getDoors().contains(door)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
 

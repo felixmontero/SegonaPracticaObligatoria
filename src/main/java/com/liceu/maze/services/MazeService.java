@@ -83,6 +83,8 @@ public class MazeService {
         mazeBuilder.putKeyInRoom(6, k2);
         mazeBuilder.putKeyInRoom(2, k1);
         mazeBuilder.putCoinInRoom(2, new Coin());
+        mazeBuilder.putCoinInRoom(5, new Coin());
+        mazeBuilder.putCoinInRoom(6, new Coin());
 
 
         mazeBuilder.setTarget(3);
@@ -100,7 +102,7 @@ public class MazeService {
                 .range(1, 7)
                 .forEach(mazeBuilder::buildRoom);
 
-        Key k1 = new Key("Level1 Key", 2);
+        Key k1 = new Key("Level1 Key", 1);
         Key k2 = new Key("Level2 Key", 1);
 
         mazeBuilder.buildDoor(1, 2, Maze.Directions.NORTH);
@@ -114,6 +116,7 @@ public class MazeService {
         mazeBuilder.putKeyInRoom(2, k1);
 
         mazeBuilder.putCoinInRoom(5, new Coin());
+        mazeBuilder.putCoinInRoom(6, new Coin());
         mazeBuilder.setTarget(3);
 
         return mazeBuilder.getMaze();
@@ -144,7 +147,7 @@ public class MazeService {
         JSONObject root = new JSONObject();
         JSONObject walls = new JSONObject();
         JSONObject player = new JSONObject();
-        JSONArray array = new JSONArray();
+
         //añadir las propiedades del jugador
         Room playerRoom = mazeGame.getPlayer().getCurrentRoom();
         player.put("currentRoom", playerRoom.getNumber());
@@ -200,42 +203,55 @@ public class MazeService {
 
     public void openDoor(MazeGame mazeGame, String dir) {
 
-        Player player = mazeGame.getPlayer();
-        Room actualRoom = player.getCurrentRoom();
-        MapSite direct = null;
+        if (dir.equalsIgnoreCase("E")) {
+            Door door = (Door) mazeGame.getPlayer().getCurrentRoom().getSide(Maze.Directions.EAST);
+            Key key = new Key();
+            if (door.isOpen()) {
 
-        if (dir.equalsIgnoreCase("n")) {
-            direct = actualRoom.getSide(Maze.Directions.NORTH);
-
-            if (dirTest(direct) == Door.class) {
-                Door door = (Door) dirTest(direct);
+            } else {
+                if (key.getDoorKey(door, mazeGame.getPlayer().getItemList())) {
+                    door.open();
+                }
 
             }
         }
-        if (dir.equalsIgnoreCase("s")) {
-            direct = actualRoom.getSide(Maze.Directions.SOUTH);
-            if (dirTest(direct) == Door.class) {
-                Door door = (Door) dirTest(direct);
-                door.open();
+
+        if (dir.equalsIgnoreCase("S")) {
+            Door door = (Door) mazeGame.getPlayer().getCurrentRoom().getSide(Maze.Directions.SOUTH);
+            Key key = new Key();
+            if (door.isOpen()) {
+
+            } else {
+                if (key.getDoorKey(door, mazeGame.getPlayer().getItemList())) {
+                    door.open();
+                }
+
             }
         }
-        if (dir.equalsIgnoreCase("w")) {
-            direct = actualRoom.getSide(Maze.Directions.WEST);
-            if (dirTest(direct) == Door.class) {
-                Door door = (Door) dirTest(direct);
-                List<Item> list = player.getItemList();
-                for (Item i : list) {
-                    if (i.getClass() == Key.class) {
-                        ((Key) i).openDoor(door);
-                    }
-                }
-            }
-            if (dir.equalsIgnoreCase("e")) {
-                direct = actualRoom.getSide(Maze.Directions.EAST);
-                if (dirTest(direct) == Door.class) {
-                    Door door = (Door) dirTest(direct);
 
+        if (dir.equalsIgnoreCase("N")) {
+            Door door = (Door) mazeGame.getPlayer().getCurrentRoom().getSide(Maze.Directions.NORTH);
+            Key key = new Key();
+            if (door.isOpen()) {
+
+            } else {
+                if (key.getDoorKey(door, mazeGame.getPlayer().getItemList())) {
+                    door.open();
                 }
+
+            }
+        }
+
+        if (dir.equalsIgnoreCase("W")) {
+            Door door = (Door) mazeGame.getPlayer().getCurrentRoom().getSide(Maze.Directions.WEST);
+            Key key = new Key();
+            if (door.isOpen()) {
+
+            } else {
+                if (key.getDoorKey(door, mazeGame.getPlayer().getItemList())) {
+                    door.open();
+                }
+
             }
         }
     }

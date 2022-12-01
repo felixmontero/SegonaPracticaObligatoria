@@ -60,16 +60,21 @@ public class Room {
     }
 
     public void getKey(Player player) {
-        Key key=null;
+        Key key = null;
 
         for (Item item : items) {
             if (item.getClass() == Key.class) {
-                 key = (Key) item;
+                key = (Key) item;
 
             }
         }
         if (player.getNumCoins() >= key.getCost()) {
             player.addItem(key);
+            int count = 0;
+            while (count< key.getCost()) {
+                player.buy(key, player);
+                count++;
+            }
             player.buy(key, player);
             items.remove(key);
         }
@@ -77,7 +82,7 @@ public class Room {
     }
 
     public void getCoin(Player player) {
-        Coin coin=null;
+        Coin coin = null;
         for (Item item : items) {
             if (item.getClass() == Coin.class) {
                 coin = (Coin) item;

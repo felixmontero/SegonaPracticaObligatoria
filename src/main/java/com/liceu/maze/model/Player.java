@@ -6,35 +6,42 @@ import java.util.List;
 public class Player {
     private Room currentRoom;
     private List<Item> itemList = new ArrayList<>();
+
     public void setCurrentRoom(Room currentRoom) {
 
         this.currentRoom = currentRoom;
 
     }
-    public int getNumCoins (){
+
+    public int getNumCoins() {
         int totalCoins = 0;
-        for (Item i:itemList) {
-            if (i.getClass() == Coin.class){
+        for (Item i : itemList) {
+            if (i.getClass() == Coin.class) {
                 totalCoins++;
             }
         }
         return totalCoins;
     }
-    public void buy(Key key, Player player){
-        int counter=0;
-        List<Item> itemList1= itemList;
-        for (Item i: itemList1) {
-            if(key.getCost()>counter && i.getClass() == Coin.class){
-                itemList.remove(i);
-                counter++;
-            }
-        }
 
+    public void buy(Key key, Player player) {
+        int counter = 0;
+        List<Item> itemList1 = itemList;
+        try {
+            for (Item i : itemList1) {
+                if (key.getCost() > counter && i.getClass() == Coin.class) {
+                    itemList.remove(i);
+                    counter++;
+                }
+            }
+        } catch (Exception e) {
+
+        }
     }
-    public int getNumKeys(){
+
+    public int getNumKeys() {
         int totalKeys = 0;
-        for (Item i:itemList) {
-            if (i.getClass() == Key.class){
+        for (Item i : itemList) {
+            if (i.getClass() == Key.class) {
                 totalKeys++;
             }
         }

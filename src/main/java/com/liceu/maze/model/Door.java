@@ -15,6 +15,7 @@ public class Door implements MapSite {
         this.open = true;
     }
 
+
     @Override
     public String toString() {
         if(this.open)
